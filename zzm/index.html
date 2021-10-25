@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/pixi.min.js"></script>
+    <script>
+		var app = new PIXI.Application(700,900);
+        document.body.appendChild(app.view);
+        
+        var bg = new PIXI.Sprite.fromImage("res/bg.png");
+        app.stage.addChild(bg);
+		var ds = new PIXI.Sprite.fromImage("res/ds.png");
+		app.stage.addChild(ds);
+		ds.x =20;ds.y=133;
+		
+		var shang  = new PIXI.Sprite.fromImage("res/上.png");
+		app.stage.addChild(shang);
+		shang.scale.x=0.5;shang.scale.y=0.5;
+		shang.x=550;shang.y=540;
+		
+		var xia  = new PIXI.Sprite.fromImage("res/下.png");
+		app.stage.addChild(xia);
+		xia.scale.x=0.5;xia.scale.y=0.5;
+		xia.x=550;xia.y=600;
+		
+		var zuo  = new PIXI.Sprite.fromImage("res/左.png");
+		app.stage.addChild(zuo);
+		zuo.scale.x=0.5;zuo.scale.y=0.5;
+		zuo.x=490;zuo.y=600;
+		
+		var you  = new PIXI.Sprite.fromImage("res/右.png");
+		app.stage.addChild(you);
+		you.scale.x=0.5;you.scale.y=0.5;
+		you.x=610;you.y=600;
+		shang.interactive = true;
+		
+			var txt = new PIXI.Text("成功啦");
+			app.stage.addChild(txt);
+			txt.visible=false;
+		shang.on("click",move1);
+		function move1() {
+		    ds.y -= 30;
+			if (ds.x>=500&&ds.y>=673){
+				txt.visible=true;
+				txt.x=350;txt.y=450;
+			}
+			if(ds.y<133){
+				ds.y+=30;
+			}
+		}
+		xia.interactive = true;
+		xia.on("click",move2);
+		function move2() {
+		    ds.y += 30;
+			if (ds.x>=500&&ds.y>=673){
+				txt.visible=true;
+				txt.x=350;txt.y=450;
+			}
+			
+		}
+		zuo.interactive = true;
+		zuo.on("click",move3);
+		function move3() {
+		    ds.x -= 30;
+		}
+		if(ds.x>200&&ds.y<403&&ds.y>134){
+			ds.x+=30;
+		}
+		
+		you.interactive = true;
+		you.on("click",move4);
+		function move4() {
+		    ds.x += 30;
+			if (ds.x>=500&&ds.y>=673){
+				txt.visible=true;
+				txt.x=350;txt.y=450;
+			}
+			else if(ds.x>330&&ds.y<550){
+				ds.x-=30;
+			}
+		}
+		
+		
+		const music = new Audio("bgm/ooo.mp3");
+		music.play();
+    </script>
+</body>
+</html>
